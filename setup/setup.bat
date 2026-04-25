@@ -62,22 +62,22 @@ kubectl wait --namespace ingress-nginx ^
   --selector=app.kubernetes.io/component=controller ^
   --timeout=180s
 
-:: Step 4 - Install Kubernetes Dashboard
-helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/ 2>nul
+:: Step 4 - Install Headlamp
+helm repo add headlamp https://kubernetes-sigs.github.io/headlamp/ 2>nul
 helm repo update
-helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard ^
-  --namespace kubernetes-dashboard --create-namespace ^
+helm upgrade --install headlamp headlamp/headlamp ^
+  --namespace kube-system ^
   --wait --timeout 180s
 
-kubectl apply -f "%SCRIPT_DIR%addons\dashboard-admin.yaml"
+kubectl apply -f "%SCRIPT_DIR%addons\headlamp-admin.yaml"
 kubectl apply -f "%SCRIPT_DIR%addons\registry-config.yaml"
 
 :: Summary
 kubectl get nodes -o wide
 kubectl get pods -A
 echo.
-echo Dashboard: kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
-echo Token:     kubectl -n kubernetes-dashboard create token admin-user
-echo Open:      https://localhost:8443
+echo Dashboard: kubectl -n kube-system port-forward svc/headlamp 58222:80
+echo Token:     kubectl -n kube-system create token headlamp-admin
+echo Open:      http://localhost:58222
 
 endlocal

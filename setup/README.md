@@ -4,10 +4,27 @@ Local 3-node cluster (1 control-plane + 2 workers) with metrics-server, ingress-
 
 ## Prerequisites
 
-- Docker Desktop (running, 4GB+ RAM)
-- kind
-- kubectl
-- helm
+You must have Docker installed and running (Docker Desktop with 4GB+ RAM is recommended).
+
+To install the required CLI tools (`kind`, `kubectl`, `helm`), run the script for your operating system from the `setup` directory:
+
+###  Mac
+```bash
+chmod +x install-tools.sh
+./install-tools.sh
+```
+
+### 🐧 Ubuntu / Debian
+```bash
+chmod +x install-tools-ubuntu.sh
+./install-tools-ubuntu.sh
+```
+
+### 🪟 Windows (PowerShell)
+```powershell
+.\install-tools.ps1
+```
+*(If you encounter a permission issue on Windows, run this command first: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`)*
 
 ## Setup
 
@@ -27,11 +44,11 @@ kubectl top nodes
 ## Access Dashboard
 
 ```bash
-kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
-kubectl -n kubernetes-dashboard create token admin-user
+kubectl -n kube-system port-forward svc/headlamp 58222:80
+kubectl -n kube-system create token headlamp-admin
 ```
 
-Open https://localhost:8443 and paste the token.
+Open http://localhost:58222 and paste the token.
 
 ## Test Ingress
 
