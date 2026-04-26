@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CLUSTER_NAME="k8s-lab-cluster"
+CLUSTER_NAME="vvce-lab-cluster"
 
 # Pre-flight checks
 for cmd in docker kind kubectl helm; do
