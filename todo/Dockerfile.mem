@@ -1,0 +1,16 @@
+FROM python:3.11.9-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+# Install stress-ng to induce memory load
+RUN apt-get update && apt-get install -y stress-ng && rm -rf /var/lib/apt/lists/*
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+
+# Command to run the application while inducing Memory load (256MB) in the background
+CMD ["sh", "-c", "stress-ng --vm 1 --vm-bytes 256M & uvicorn todo_v2:app --host 0.0.0.0 --port 8000"]
