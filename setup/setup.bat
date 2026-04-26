@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set CLUSTER_NAME=vvce-lab-cluster
+set CLUSTER_NAME=k8s-lab-cluster
 set SCRIPT_DIR=%~dp0
 
 :: Pre-flight checks
