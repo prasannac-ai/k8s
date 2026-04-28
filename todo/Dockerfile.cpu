@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 8000
 
 # Command to run the application while inducing CPU load in the background
-CMD ["sh", "-c", "stress-ng --cpu 1 & uvicorn todo_v2:app --host 0.0.0.0 --port 8000"]
+CMD ["sh", "-c", "stress-ng --cpu 1 --timeout 180s & uvicorn todo_v2:app --host 0.0.0.0 --port 8000"]

@@ -56,3 +56,15 @@ curl http://localhost:5001/v2/_catalog
 ```bash
 curl http://localhost:5001/v2/todo-api/tags/list
 ```
+
+## 7. Docker Compose
+
+### Start services:
+```bash
+docker compose up
+```
+
+### Start with load balancing (scaled to 2 instances):
+```bash
+docker compose -f docker-compose-lb.yml up --scale todo-api=2
+```
