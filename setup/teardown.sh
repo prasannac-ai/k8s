@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-CLUSTER_NAME="vvce-lab-cluster"
+CLUSTER_NAME="k8s-lab-cluster"
 REG_NAME="kind-registry"
 
 echo "Deleting Kind cluster: ${CLUSTER_NAME}..."

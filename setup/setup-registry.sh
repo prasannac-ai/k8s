@@ -15,7 +15,7 @@ echo "Registry is running on localhost:${reg_port}"
 echo "You can tag and push images like: localhost:${reg_port}/my-image:latest"
 
 # 2. Connect the registry to the cluster network if the cluster exists
-if kind get clusters 2>/dev/null | grep -q "^vvce-lab-cluster$"; then
+if kind get clusters 2>/dev/null | grep -q "^k8s-lab-cluster$"; then
   docker network connect "kind" "${reg_name}" 2>/dev/null || true
   echo "Connected registry to kind network."
 fi

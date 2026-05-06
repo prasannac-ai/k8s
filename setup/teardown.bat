@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set CLUSTER_NAME=vvce-lab-cluster
+set CLUSTER_NAME=k8s-lab-cluster
 set REG_NAME=kind-registry
 
 echo Deleting Kind cluster: %CLUSTER_NAME%...
